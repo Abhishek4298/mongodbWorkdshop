@@ -137,3 +137,92 @@ username : "GoodGuyGreg",
     {"first" : "Scumbag","last" : "Steve"}
    
 })
+
+// Insert into  collection
+db.createCollections("posts")
+db.posts.insertMany([
+{
+"username": "GoodGuyGreg",
+"title": "Passes out at party",
+"body": "Wakes up early and cleans house"
+},
+{
+"username": "GoodGuyGreg",
+"title": "Steals your identity",
+"body": "Raises your credit score"
+},
+{
+"username": "GoodGuyGreg",
+"title": "Reports a bug in your code",
+"body": "Sends you a Pull Request"
+},
+{
+"username": "ScumbagSteve",
+"title": "Borrows something",
+"body": "Sells it"
+},
+{
+"username": "ScumbagSteve",
+"title": "Borrows everything",
+"body": "The end"
+},
+{
+"username": "ScumbagSteve",
+"title": "Forks your repo on github",
+"body": "Sets to private"
+}
+])
+
+// Insert into comment collection
+db.createCollection("comments")
+
+db.comments.insert([{
+"username": "GoodGuyGreg",
+"comment": "Hope you got a good deal!",
+"post": ObjectId("5e299794caa1e8bf16c4de74")
+},
+{
+"username": "GoodGuyGreg",
+"comment": "What's mine is yours!",
+"post": ObjectId("5e299794caa1e8bf16c4de75")
+},
+{
+"username": "GoodGuyGreg",
+"comment": "Don't violate the licensing agreement!",
+"post": ObjectId("5e299794caa1e8bf16c4de76")
+},
+{
+"username": "ScumbagSteve",
+"comment": "It still isn't clean",
+"post": ObjectId("5e299794caa1e8bf16c4de77")
+},
+{
+"username": "ScumbagSteve",
+"comment": "Denied your PR cause I found a hack",
+"post": ObjectId("5e299794caa1e8bf16c4de78")
+}
+])
+
+// find all users
+db.users.find().pretty()
+
+// find all posts
+db.posts.find().pretty()
+
+// find all posts that was authored by "GoodGuyGreg"
+db.posts.find({"username": "GoodGuyGreg"}).pretty()
+
+//find all posts that was authored by "ScumbagSteve"
+db.posts.find({"username": "ScumbagSteve"}).pretty()
+
+// find all comments
+db.comments.find().pretty()
+
+// find all comments that was authored by "GoodGuyGreg"
+db.comments.find({"username": "GoodGuyGreg"}).pretty()
+
+// find all comments that was authored by "ScumbagSteve"
+db.comments.find({"username":"ScumbagSteve"}).pretty()
+
+// find all comments belonging to the post "Reports a bug in your code"
+db.comments.find({"title": "Reports a bug in your code"}).
